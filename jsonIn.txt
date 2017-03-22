@@ -1,0 +1,23 @@
+{
+  "request": {
+    "slice": [
+      {
+        "origin": "BOS",
+        "destination": "SEA",
+        "date": "2017-07-18",
+        "permittedCarrier": "B6"
+      },
+      {
+        "origin": "SEA", 
+        "destination": "BOS",
+        "date": "2017-07-25",
+        "permittedCarrier": "B6"
+      }
+    ],
+    "passengers": {
+      "adultCount": 1
+    },
+    "solutions": 5,
+    "refundable": false
+  }
+}
