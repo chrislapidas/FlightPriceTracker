@@ -14,7 +14,21 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class PostRequest {
 
-	public JsonObject makePostRequest() throws Exception{
+	/*     METHOD: makePostRequest(String jsonInTxtFile)
+	 * 
+	 * Submits a post request using an input txt file, turning it into a json object, sends request, takes returning contents
+	 * and saves them to an output file, then reads those contens back in to a new json object which is returned.
+	 * 
+	 * Input: jsonInTxtFile - This is a text file in the format of the json input for QPX Express. For formatting, check online docs.
+	 * 
+	 * Output: JsonObject - javax.json object that stores the results from the POST request. Formatting is again detailed
+		on the online docs for QPX express. 
+	*/
+	
+	public JsonObject makePostRequest(String jsonInTxtFile) throws Exception{
+		//url for the post request
+		//TO MAKE POST REQUEST: Register for an api key on google's API website. You may need to search for "QPX Express" to show up
+		//on the list of APIs. After registering, they will provide you with a key. Use it where it says INSERT_API_KEY_HERE.
 		String url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=INSERT_API_KEY_HERE";
 		URL urlObj = new URL(url);
 		HttpsURLConnection con = (HttpsURLConnection)urlObj.openConnection();
@@ -28,7 +42,7 @@ public class PostRequest {
 		con.setDoOutput(true);
 		
 		//create json input from .txt file for post
-		InputStream jsonTxt = new FileInputStream("jsonIn.txt");
+		InputStream jsonTxt = new FileInputStream(jsonInTxtFile);
 		JsonReader jReader = Json.createReader(jsonTxt);
 		JsonObject jsonObj = jReader.readObject();
 		
@@ -39,6 +53,8 @@ public class PostRequest {
 		wr.flush();
 		wr.close();
 
+		//response code shows status of request
+		//200 is a normal response
 		int responseCode = con.getResponseCode();
 		System.out.println("\nSending 'POST' request to URL : " + url);
 		System.out.println("Response Code : " + responseCode);
@@ -51,7 +67,6 @@ public class PostRequest {
 		//write response to string
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
-			
 		}
 		in.close();
 		

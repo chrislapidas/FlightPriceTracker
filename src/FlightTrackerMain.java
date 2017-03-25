@@ -24,7 +24,7 @@ public class FlightTrackerMain {
 				PostRequest myPost = new PostRequest();
 				PostResponse myPostResponse = null;
 				try {
-					myPostResponse = new PostResponse(myPost.makePostRequest());
+					myPostResponse = new PostResponse(myPost.makePostRequest("jsonIn.txt"));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
