@@ -26,6 +26,7 @@ public class PostRequest {
 	*/
 	
 	public JsonObject makePostRequest(String jsonInTxtFile) throws Exception{
+		
 		//url for the post request
 		//TO MAKE POST REQUEST: Register for an api key on google's API website. You may need to search for "QPX Express" to show up
 		//on the list of APIs. After registering, they will provide you with a key. Use it where it says INSERT_API_KEY_HERE.
@@ -46,7 +47,6 @@ public class PostRequest {
 		JsonReader jReader = Json.createReader(jsonTxt);
 		JsonObject jsonObj = jReader.readObject();
 		
-
 		//send post request
 		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 		wr.writeBytes(jsonObj.toString());
